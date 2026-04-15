@@ -45,11 +45,12 @@ This creates an isolated venv and puts `op-mcp` on PATH. To upgrade
 after code changes:
 
 ```sh
-uv tool install --force --reinstall .
+uv tool install --force .
 ```
 
-Both flags are needed — `--force` overwrites the existing
-executable, `--reinstall` bypasses the build cache.
+`--force` overwrites the existing entry point and rebuilds from source.
+(`--reinstall` re-downloads PyPI dependencies — not needed for a local
+path install.)
 
 ## Run
 
@@ -112,10 +113,10 @@ Reads are safe to allow; writes should ask for confirmation.
 
 ```sh
 uv sync --extra dev
-uv run pytest                              # unit tests (fake `op` binary)
+make test                                  # uv run pytest (fake `op` binary)
 RUN_LIVE_OP_TESTS=1 uv run pytest -m live  # live tests against real op CLI
-uv run ruff check
-uv run pyright
+make lint                                  # ruff + pyright
+make install-mcp                           # reinstall after code changes
 ```
 
 Tests use a fake `op` binary (temporary shell scripts), so they
