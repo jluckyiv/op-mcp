@@ -40,7 +40,7 @@ async def test_run_bad_json_raises(fake_op_factory: Callable[[str], OpRunner]) -
         await runner.run("item", "list", expect_json=True)
 
 
-async def test_missing_binary_raises(empty_path: None) -> None:  # noqa: ARG001
+async def test_missing_binary_raises(empty_path: None) -> None:
     runner = OpRunner()
     with pytest.raises(OpBinaryNotFoundError):
         await runner.run("read", "op://x/y/z")

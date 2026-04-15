@@ -93,6 +93,7 @@ Reads are safe to allow; writes should ask for confirmation.
     "allow": [
       "mcp__op__op_ping",
       "mcp__op__op_version",
+      "mcp__op__op_whoami",
       "mcp__op__op_list_vaults",
       "mcp__op__op_get_item",
       "mcp__op__op_read_secret",

@@ -66,6 +66,10 @@ pythonVersion = "3.11"
 typeCheckingMode = "strict"
 venvPath = "."
 venv = ".venv"
+# @mcp.tool() registers functions via decorator; pyright can't see the reference.
+reportUnusedFunction = "none"
+# runner.run() returns Any (JSON); isinstance() narrowing yields list[Unknown].
+reportUnknownArgumentType = "none"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

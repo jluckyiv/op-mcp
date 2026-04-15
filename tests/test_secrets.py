@@ -32,7 +32,7 @@ async def test_invalid_reference_rejected(fake_op_factory: Callable[[str], OpRun
 
 
 @pytest.mark.live
-async def test_live_op_read(fake_op_factory: Callable[[str], OpRunner]) -> None:  # noqa: ARG001
+async def test_live_op_read(fake_op_factory: Callable[[str], OpRunner]) -> None:
     """Live test: reads a known secret from the real 1Password vault.
 
     Requires:
