@@ -7,8 +7,8 @@ Wraps:
   - op item delete     → op_delete_item
 
 Item creation and editing in the `op` CLI uses positional `field.assignment`
-syntax (e.g. `username=alice password=s3cr3t`). These handlers accept a
-plain dict and translate to the CLI's assignment form.
+syntax (e.g. `notesPlain=some-note api-key=tok_example`). These handlers
+accept a plain dict and translate to the CLI's assignment form.
 """
 
 from __future__ import annotations
@@ -79,9 +79,9 @@ def register(mcp: FastMCP, runner: OpRunner) -> None:
             category: Item category (e.g. "Login", "Password", "API Credential",
                 "Secure Note"). See `op item template list` for the full list.
             vault: Target vault name or ID.
-            fields: Mapping of field name → value (e.g. {"username": "alice",
-                "password": "s3cr3t"}). Translated to the CLI's
-                `field=value` positional form.
+            fields: Mapping of field name → value (e.g. {"notesPlain":
+                "some note", "api-key": "tok_example"}). Translated to
+                the CLI's `field=value` positional form.
             tags: Optional list of tag strings.
 
         Returns the created item metadata as JSON.

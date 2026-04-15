@@ -10,9 +10,9 @@ from op_mcp.runner import OpRunner
 
 
 async def test_op_read_returns_secret_string(fake_op_factory: Callable[[str], OpRunner]) -> None:
-    runner = fake_op_factory("echo 'hunter2'\n")
-    result = await runner.run("read", "op://Private/test/password")
-    assert result == "hunter2"
+    runner = fake_op_factory("echo 'test-secret-value'\n")
+    result = await runner.run("read", "op://Private/test/credential")
+    assert result == "test-secret-value"
 
 
 async def test_invalid_reference_rejected(fake_op_factory: Callable[[str], OpRunner]) -> None:
