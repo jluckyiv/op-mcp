@@ -91,10 +91,12 @@ Reads are safe to allow; writes should ask for confirmation.
 {
   "permissions": {
     "allow": [
-      "mcp__op__op_read_secret",
-      "mcp__op__op_list_items",
+      "mcp__op__op_ping",
       "mcp__op__op_version",
-      "mcp__op__op_ping"
+      "mcp__op__op_list_vaults",
+      "mcp__op__op_get_item",
+      "mcp__op__op_read_secret",
+      "mcp__op__op_list_items"
     ],
     "ask": [
       "mcp__op__op_create_item",
@@ -122,7 +124,7 @@ and are skipped by default.
 
 ## Tools
 
-7 tools total: 2 infrastructure, 2 read, 3 write.
+9 tools total: 2 infrastructure, 4 read, 3 write.
 
 ### Infrastructure
 
@@ -135,6 +137,8 @@ and are skipped by default.
 
 | Tool | Description |
 |------|-------------|
+| `op_list_vaults` | List all accessible vaults (names and IDs) |
+| `op_get_item` | Get all fields of an item by name or ID |
 | `op_read_secret` | Read a secret by `op://vault/item/field` reference |
 | `op_list_items` | List items in a vault (or across all vaults) |
 

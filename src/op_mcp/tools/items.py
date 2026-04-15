@@ -24,6 +24,32 @@ def register(mcp: FastMCP, runner: OpRunner) -> None:
     """Register item-management tool handlers."""
 
     @mcp.tool()
+    async def op_list_vaults() -> Any:
+        """List all 1Password vaults the authenticated account can access.
+
+        Returns an array of vault summaries (id, name, type). Use vault names
+        or IDs with op_list_items and op_get_item to scope queries.
+        """
+        return await runner.run("vault", "list", "--format=json", expect_json=True)
+
+    @mcp.tool()
+    async def op_get_item(item: str, vault: str | None = None) -> Any:
+        """Get all fields of a 1Password item.
+
+        Returns the full item JSON including all fields, sections, and metadata.
+        Use this when you need more than the summary returned by op_list_items,
+        or when you want to inspect fields without knowing the exact op:// reference.
+
+        Args:
+            item: Item ID or exact title.
+            vault: Optional vault name/ID to disambiguate when the title is not unique.
+        """
+        args: list[str] = ["item", "get", item, "--format=json"]
+        if vault is not None:
+            args.extend(["--vault", vault])
+        return await runner.run(*args, expect_json=True)
+
+    @mcp.tool()
     async def op_list_items(vault: str | None = None) -> Any:
         """List items in a 1Password vault.
 
