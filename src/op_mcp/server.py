@@ -23,6 +23,7 @@ from __future__ import annotations
 import logging
 import shutil
 import sys
+from typing import Any
 
 from mcp.server.fastmcp import FastMCP
 
@@ -77,6 +78,15 @@ def register_tools(mcp: FastMCP, runner: OpRunner) -> None:
     async def op_version() -> str:
         """Return the version of the `op` CLI binary. No auth required."""
         return (await runner.version()).strip()
+
+    @mcp.tool()
+    async def op_whoami() -> Any:
+        """Return the currently authenticated 1Password account.
+
+        Useful for confirming which account is active and that auth is working,
+        without attempting a real secret read.
+        """
+        return await runner.run("whoami", "--format=json", expect_json=True)
 
     @mcp.tool()
     async def op_ping() -> dict[str, str]:

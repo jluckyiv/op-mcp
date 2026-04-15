@@ -124,7 +124,7 @@ and are skipped by default.
 
 ## Tools
 
-9 tools total: 2 infrastructure, 4 read, 3 write.
+10 tools total: 3 infrastructure, 4 read, 3 write.
 
 ### Infrastructure
 
@@ -132,6 +132,7 @@ and are skipped by default.
 |------|-------------|
 | `op_ping` | MCP server liveness check |
 | `op_version` | `op` CLI binary version |
+| `op_whoami` | Currently authenticated 1Password account |
 
 ### Read tools
 
