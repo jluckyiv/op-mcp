@@ -1,7 +1,7 @@
 .PHONY: install-mcp test lint
 
 install-mcp:
-	uv tool install --force .
+	uv tool install --force --no-cache .
 
 test:
 	uv run pytest
